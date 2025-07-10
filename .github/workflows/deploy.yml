@@ -1,0 +1,19 @@
+name : Continous Deployment
+
+on : 
+  push :
+      branches : [main]
+
+jobs : 
+  build :
+    runs-on : ubuntu-latest
+    steps : 
+      - uses : actions/checkout@v2
+        with :
+          fetch-depth : 0
+      - name : Build The Project
+      - run : |
+          npm install
+          npm install -g bun
+          bun run ./src/index.ts
+
